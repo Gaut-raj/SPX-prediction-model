@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>S&P 500 Model</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">S&P 500 / MODEL EVALUATION</p>
+        <h1>S&P 500 <span>model</span></h1>
+      </div>
+      <div class="status"><i id="statusDot"></i><span id="statusText">Ready to run</span></div>
+    </header>
+
+    <section class="hero-grid">
+      <div class="intro">
+        <p class="ticker">^GSPC <b>INDEX</b></p>
+        <h2>Test-set predictions</h2>
+        <p class="lede">A comparison of model predictions with actual daily closing values. The test data remains in chronological order.</p>
+        <button id="runButton" class="run-button" type="button"><span>Run prediction</span><span class="arrow">&#8594;</span></button>
+        <p id="errorMessage" class="error" role="alert"></p>
+      </div>
+      <div class="snapshot">
+        <p class="eyebrow">LATEST ACTUAL CLOSE</p>
+        <div class="snapshot-value" id="latestActual">--</div>
+        <div class="snapshot-change" id="latestDate">Awaiting model run</div>
+      </div>
+    </section>
+
+    <section class="metrics" aria-label="Model metrics">
+      <article><p>Test MAE</p><strong id="mae">--</strong><small>Mean absolute error</small></article>
+      <article><p>Model forecast</p><strong id="latestPrediction">--</strong><small>Latest predicted close</small></article>
+      <article><p>Test observations</p><strong id="observations">--</strong><small>Chronological samples</small></article>
+    </section>
+
+    <section class="chart-panel">
+      <div class="panel-heading"><div><p class="eyebrow">TEST SET</p><h2>Actual and predicted close</h2></div><div class="legend"><span><i class="actual-key"></i>Actual</span><span><i class="prediction-key"></i>Prediction</span></div></div>
+      <div class="chart-wrap"><canvas id="predictionChart" aria-label="Actual versus predicted S&P 500 closing prices"></canvas><div id="emptyState" class="empty-state">Run the model to populate this chart.</div></div>
+    </section>
+
+    <section class="table-panel">
+      <div class="panel-heading"><div><p class="eyebrow">TEST DATA</p><h2>Prediction details</h2></div><span id="runDate" class="run-date">No run yet</span></div>
+      <div class="table-scroll"><table><thead><tr><th>Date</th><th>Actual close</th><th>Predicted close</th><th>Variance</th></tr></thead><tbody id="predictionRows"><tr><td colspan="4" class="empty-row">No observations yet.</td></tr></tbody></table></div>
+    </section>
+  </main>
+  <script src="/static/app.js"></script>
+</body>
+</html>
